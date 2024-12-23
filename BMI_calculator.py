@@ -13,18 +13,28 @@ def classify_bmi(bmi):
         return "Overweight"
     else:
         return "Obese"
-
 def main():
     print("Welcome to the BMI Calculator!")
 
     # Input weight and height
-    weight = float(input("Enter your weight in kilograms: "))
-    height = float(input("Enter your height in meters: "))
+    
+    try:
+        weight = float(input("Enter your weight in kilograms: "))
+        height = float(input("Enter your height in meters: "))
+    except ValueError:
+        print("Invalid input! Please enter numeric values.")
+        return
+
+    if height <= 0 or weight <= 0:
+        print("Height and weight must be positive numbers.")
+        return
 
     # Calculate and classify BMI
     bmi = calculate_bmi(weight, height)  
-    category = classify_bmi(bmi)
+    category= classify_bmi(bmi)
+    print("=========================================================")
     print(f"Your BMI is {bmi}, which is considered {category}.")
+    print("=========================================================")
 
 if __name__ == "__main__":
     main()
